@@ -5,13 +5,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.donation.R
+import com.example.donation.adapters.DonationAdapter
+import com.example.donation.main.DonationApp
+import kotlinx.android.synthetic.main.activity_report.*
 
 class Report : AppCompatActivity() {
+
+    lateinit var app: DonationApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
+
+        app = this.application as DonationApp
+        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        recyclerView.adapter = DonationAdapter(app.donationsStore.findAll())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
