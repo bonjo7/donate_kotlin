@@ -6,15 +6,19 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
+import ie.wit.fragments.DonateFragment
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.toast
 
 class Home : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
+
+    lateinit var ft: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,13 @@ class Home : AppCompatActivity(),
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        ft = supportFragmentManager.beginTransaction()
+
+        val fragment = DonateFragment.newInstance()
+
+        ft.replace(R.id.homeFrame, fragment)
+        ft.commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
