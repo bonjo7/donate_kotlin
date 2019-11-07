@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.Donate"
-    tools:showIn="@layout/activity_donnate">
+    tools:showIn="@layout/activity_donate">
 
     <TextView
         android:id="@+id/donateTitle"
@@ -102,13 +102,14 @@
 
     <NumberPicker
         android:id="@+id/amountPicker"
+        style="@android:style/Widget.Material.NumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/donateSubtitle"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.973"
@@ -205,5 +206,4 @@
         app:layout_constraintVertical_bias="0.781"
         android:autofillHints="Please Enter an Amount"
         android:hint="@string/enter_amount"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
