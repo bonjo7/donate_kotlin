@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import ie.wit.R
 import ie.wit.main.DonationApp
 import ie.wit.models.DonationModel
-import kotlinx.android.synthetic.main.content_donate.view.*
+import kotlinx.android.synthetic.main.fragment_donate.view.*
 import org.jetbrains.anko.toast
 
 class DonateFragment : Fragment() {

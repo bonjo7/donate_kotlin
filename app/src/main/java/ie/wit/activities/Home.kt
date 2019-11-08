@@ -6,11 +6,13 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
 import ie.wit.fragments.DonateFragment
+import ie.wit.fragments.ReportFragment
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.toast
@@ -51,8 +53,9 @@ class Home : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.nav_donate -> toast("You Selected Donate")
-            R.id.nav_report -> toast("You Selected Report")
+            R.id.nav_donate -> navigateTo(DonateFragment.newInstance())
+            R.id.nav_report -> navigateTo(ReportFragment.newInstance())
+
 
             else -> toast("You Selected Something Else")
         }
@@ -61,7 +64,7 @@ class Home : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_donate, menu)
+        menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
 
@@ -70,5 +73,21 @@ class Home : AppCompatActivity(),
             drawerLayout.closeDrawer(GravityCompat.START)
          else
             super.onBackPressed()
+    }
+
+    private fun navigateTo(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.homeFrame, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.action_donate -> toast("You Selected Donate")
+            R.id.action_report -> toast("You Selected Report")
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
