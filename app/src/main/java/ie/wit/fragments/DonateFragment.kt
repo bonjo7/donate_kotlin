@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import ie.wit.R
 import ie.wit.main.DonationApp
 import ie.wit.models.DonationModel
+import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_donate.view.*
 import org.jetbrains.anko.toast
 
@@ -67,5 +68,14 @@ class DonateFragment : Fragment() {
                 app.donationsStore.create(DonationModel(paymentmethod = paymentmethod,amount = amount))
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        totalDonated = app.donationsStore.findAll().sumBy { it.amount }
+//        progressBar.progress = totalDonated
+//        totalSoFar.text = "$$totalDonated"
+        progressBar.progress = totalDonated
+        totalSoFar.text = "${totalDonated}"
     }
 }
